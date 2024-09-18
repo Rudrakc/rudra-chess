@@ -7,9 +7,9 @@ import { Rook } from "./pieces/rook.js";
 
 class Board {
   constructor() {
-    this.board = this.initiateBoard();
+    this.board = this.#initiateBoard();
   }
-  initiateBoard() {
+  #initiateBoard() {
     let board = [];
 
     for (let i = 0; i < 8; i++) {
@@ -103,6 +103,10 @@ class Board {
 
     console.log(border);
     console.log(bottomBorder);
+  }
+
+  resetBoard() {
+    this.board = this.#initiateBoard();
   }
 }
 
