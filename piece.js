@@ -8,7 +8,4 @@ export class Piece {
     console.log("Method not implemeted by: " + typeof this);
   }
 
-  kill(targetPiece) {
-    console.log("Method not implemeted by: " + typeof this);
-  }
 }

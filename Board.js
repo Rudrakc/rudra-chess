@@ -8,6 +8,8 @@ import { Rook } from "./pieces/rook.js";
 class Board {
   constructor() {
     this.board = this.#initiateBoard();
+    this.whiteKilledPieces = [];
+    this.blackKilledPieces = [];
   }
   #initiateBoard() {
     let board = [];
@@ -63,10 +65,7 @@ class Board {
       });
     }
 
-
     return board;
-
-
   }
 
   printBoard() {
@@ -108,7 +107,31 @@ class Board {
   resetBoard() {
     this.board = this.#initiateBoard();
   }
-}
 
-let demo = new Board();
-demo.printBoard();
+  #getIndex(position) {
+    row = 8 - position[1];
+    col = "A".charCodeAt(0) - position[0].charCodeAt(0);
+    return { row, col };
+  }
+
+  getPiece(position) {
+    const [row, col] = this.#getIndex(position);
+    return this.board[row][col];
+  }
+
+  move(intiPosition, finalPosition) {
+    const curPiece = this.getPiece(intiPosition);
+    const isMoveValid = curPiece.validateMove(finalPosition);
+    if (isMoveValid) {
+      const targetCell = this.getPiece(finalPosition);
+      const [row, col] = this.#getIndex(finalPosition);
+      curPiece.position = finalPosition;
+      this.board[row][col] = curPiece;
+      if (targetCell !== null) {
+        curPiece.color === "white"
+          ? this.whiteKilledPieces.push(targetCell)
+          : this.blackKilledPieces.push(targetCell);
+      }
+    }
+  }
+}
