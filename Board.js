@@ -108,30 +108,32 @@ class Board {
     this.board = this.#initiateBoard();
   }
 
-  #getIndex(position) {
+  getIndex(position) {
     row = 8 - position[1];
     col = "A".charCodeAt(0) - position[0].charCodeAt(0);
     return { row, col };
   }
 
   getPiece(position) {
-    const [row, col] = this.#getIndex(position);
+    const [row, col] = this.getIndex(position);
     return this.board[row][col];
   }
 
   move(intiPosition, finalPosition) {
     const curPiece = this.getPiece(intiPosition);
-    const isMoveValid = curPiece.validateMove(finalPosition);
+    const isMoveValid = curPiece.validateMove(this, finalPosition);
     if (isMoveValid) {
       const targetCell = this.getPiece(finalPosition);
-      const [row, col] = this.#getIndex(finalPosition);
+      const [row, col] = this.getIndex(finalPosition);
       curPiece.position = finalPosition;
       this.board[row][col] = curPiece;
+      const [initRow, initCol] = this.getIndex(intiPosition);
+      this.board[initRow][initCol] = null;
       if (targetCell !== null) {
         curPiece.color === "white"
           ? this.whiteKilledPieces.push(targetCell)
           : this.blackKilledPieces.push(targetCell);
       }
-    }
+    } else throw new Error("Invalid Move");
   }
 }

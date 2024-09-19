@@ -4,7 +4,7 @@ export class Piece {
     this.color = config.color;
   }
 
-  move(targetPosition) {
+  validateMove(targetPosition) {
     console.log("Method not implemeted by: " + typeof this);
   }
 
