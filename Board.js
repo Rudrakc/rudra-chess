@@ -131,9 +131,13 @@ class Board {
       this.board[initRow][initCol] = null;
       if (targetCell !== null) {
         curPiece.color === "white"
-          ? this.whiteKilledPieces.push(targetCell)
-          : this.blackKilledPieces.push(targetCell);
+          ? targetCell.color === "black"
+            ? this.whiteKilledPieces.push(targetCell)
+            : console.log("Invalid Move")
+          : targetCell.color === "white"
+            ? this.blackKilledPieces.push(targetCell)
+            : console.log("Invalid Move");
       }
-    } else throw new Error("Invalid Move");
+    } else console.log("Invalid Move");
   }
 }

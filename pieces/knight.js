@@ -6,10 +6,9 @@ export class Knight extends Piece {
     this.type = "knight";
   }
 
-  validateMove(board, newPosition) {
+  validateMove(boardState, newPosition) {
     cosnt [row, col] = boardState.getIndex(this.position);
     const [finalRow, finalCol] = boardState.getIndex(newPosition);
-    const board = boardState.board;
     
     const rowOffsets = [2, 2, -2, -2, 1, 1, -1, -1];
     const colOffsets = [1, -1, 1, -1, 2, -2, 2, -2];
