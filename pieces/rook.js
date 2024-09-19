@@ -12,7 +12,7 @@ export class Rook extends Piece {
     const board = boardState.board;
     let ans = true;
     if(row === finalRow){
-      let initIdx = (finalCol > col) ? col : finalCol;
+      let initIdx = (finalCol > col) ? col+1 : finalCol+1;
       let endIdx = (finalCol > col) ? finalCol : col;
 
       for(let i = initIdx ; i < endIdx; i++) {
@@ -20,7 +20,7 @@ export class Rook extends Piece {
       }
     }
     else if(col === finalCol){
-      let initIdx = (finalRow > row) ? row : finalRow;
+      let initIdx = (finalRow > row) ? row+1 : finalRow+1;
       let endIdx = (finalRow > row) ? finalRow : row;
 
       for(let i = initIdx ; i < endIdx; i++) {
@@ -29,7 +29,7 @@ export class Rook extends Piece {
     }
     else ans = false;
 
-    return false;
+    return ans;
     
   }
 }

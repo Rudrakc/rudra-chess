@@ -6,5 +6,7 @@ export class Pawn extends Piece {
     this.type = "pawn";
   }
 
-  move(newPosition) {}
+  move(newPosition) {
+    
+  }
 }

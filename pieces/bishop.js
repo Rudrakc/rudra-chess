@@ -1,26 +1,32 @@
 import { Piece } from "../piece.js";
 
 export class Bishop extends Piece {
-    constructor(config) {
-        super(config);
-        this.type = 'bishop';
-    }
-    
-    validateMove(boardState, newPosition) {
-        cosnt [row, col] = boardState.getIndex(this.position);
-        const [finalRow, finalCol] = boardState.getIndex(newPosition);
-        const board = boardState.board;
+  constructor(config) {
+    super(config);
+    this.type = "bishop";
+  }
 
-        if(Math.abs(row-finalRow) === Math.abs(col-finalCol)){
-            for(let i = row; i<finalRow; (row < finalRow) ? i++ : i--) {
-                for(let j=col ; j<finalCol; (col < finalCol) ? j++ : j--) {
-                    if(i !== row && j !== col) {
-                        if (board[i][j] !== null) return false;
-                    }
-                }
-            }
-            return true;
+  validateMove(boardState, newPosition) {
+    const [row, col] = boardState.getIndex(this.position); 
+    const [finalRow, finalCol] = boardState.getIndex(newPosition);
+    const board = boardState.board;
+
+    if (Math.abs(row - finalRow) === Math.abs(col - finalCol)) {
+      let rowStep = finalRow > row ? 1 : -1;
+      let colStep = finalCol > col ? 1 : -1;
+
+      let currentRow = row + rowStep;
+      let currentCol = col + colStep;
+      
+      while (currentRow !== finalRow && currentCol !== finalCol) {
+        if (board[currentRow][currentCol] !== null) {
+          return false;
         }
-        return false;
+        currentRow += rowStep;
+        currentCol += colStep;
+      }
+      return true;
     }
+    return false;
+  }
 }
