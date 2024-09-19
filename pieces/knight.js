@@ -13,6 +13,7 @@ export class Knight extends Piece {
     const rowOffsets = [2, 2, -2, -2, 1, 1, -1, -1];
     const colOffsets = [1, -1, 1, -1, 2, -2, 2, -2];
 
+    // Checking for all 8 possible positions
     for (let i = 0; i < rowOffsets.length; i++) {
       const newRow = row + rowOffsets[i];
       const newCol = col + colOffsets[i];

@@ -11,6 +11,8 @@ export class Rook extends Piece {
     const [finalRow, finalCol] = boardState.getIndex(newPosition);
     const board = boardState.board;
     let ans = true;
+
+    // Horizontal Move
     if(row === finalRow){
       let initIdx = (finalCol > col) ? col+1 : finalCol+1;
       let endIdx = (finalCol > col) ? finalCol : col;
@@ -19,6 +21,8 @@ export class Rook extends Piece {
         if(board[row][i] !== null) ans = false; 
       }
     }
+    
+    // Vertical Move
     else if(col === finalCol){
       let initIdx = (finalRow > row) ? row+1 : finalRow+1;
       let endIdx = (finalRow > row) ? finalRow : row;

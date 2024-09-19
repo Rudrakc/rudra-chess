@@ -11,13 +11,15 @@ export class Bishop extends Piece {
     const [finalRow, finalCol] = boardState.getIndex(newPosition);
     const board = boardState.board;
 
+    //Diagonal Move
     if (Math.abs(row - finalRow) === Math.abs(col - finalCol)) {
       let rowStep = finalRow > row ? 1 : -1;
       let colStep = finalCol > col ? 1 : -1;
 
       let currentRow = row + rowStep;
       let currentCol = col + colStep;
-      
+
+      // Checking if path is clear or not 
       while (currentRow !== finalRow && currentCol !== finalCol) {
         if (board[currentRow][currentCol] !== null) {
           return false;

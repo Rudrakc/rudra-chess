@@ -14,6 +14,7 @@ export class King extends Piece {
     const rowOffsets = [1, 1, 1, 0, 0, -1, -1, -1];
     const colOffsets = [1, 0, -1, 1, -1, 1, 0, -1];
 
+    // Checking in one square radius
     for (let i = 0; i < rowOffsets.length; i++) {
       const newRow = row + rowOffsets[i];
       const newCol = col + colOffsets[i];
